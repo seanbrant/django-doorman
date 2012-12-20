@@ -22,9 +22,10 @@ setup(
     url='https://github.com/seanbrant/django-doorman',
     author='Sean Brant',
     author_email='brant.sean@gmail.com',
+    license='BSD',
     description='Flexible permission backend',
-    long_description=read('docs', 'index.rst'),
-    packages=find_packages(exclude=['tests*']),
+    long_description=read('README.rst'),
+    packages=['doorman'],
     install_requires=[
         'django>=1.2',
     ],
