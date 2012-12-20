@@ -9,8 +9,8 @@ from doorman.backends import PermissionBackend
 class PermissionBackendTestCase(TestCase):
 
     def setUp(self):
-        self.checker = Mock()
-        self.backend = PermissionBackend(checker=self.checker)
+        self.backend = PermissionBackend()
+        self.backend.permissions = Mock()
 
     def test_inactive_user_does_not_have_permission(self):
         user = User(is_active=False)
@@ -20,7 +20,7 @@ class PermissionBackendTestCase(TestCase):
         user = User()
         obj = Mock()
         self.backend.has_perm(user, 'perm', obj=obj)
-        self.checker.has_perm.assert_called_with(user, 'perm', obj)
+        self.backend.permissions.has_perm.assert_called_with(user, 'perm', obj)
 
     def test_authenticate_is_not_supported(self):
         self.assertIsNone(self.backend.authenticate())
